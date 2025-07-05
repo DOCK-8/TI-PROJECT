@@ -53,6 +53,7 @@ def calcularEnergiaPanelesPorDia(area_panel, irradiancia_solar, eficiencia_panel
     energia_generada = area_panel * irradiancia_solar * eficiencia_panel * factor_perdidas
     return energia_generada # Produccion energetica diaria en kWh/día
 
+"""
 print("Producción energética diaria del panel solar:")
 print(f"Área del panel: {area_panel} m²")
 print(f"Irradiancia solar anual: {irradiancia_solar_anual} kWh/m²/día")
@@ -60,3 +61,4 @@ print(f"Eficiencia del panel: {eficiencia_panel * 100}%")
 print(f"Índice de rendimiento del panel: {indice_rendimiento * 100}%")
 print("Energía generada por el panel solar (kWh/día):")
 print(calcularEnergiaPanelesPorDia(area_panel, irradiancia_solar_anual, eficiencia_panel, indice_rendimiento)*365)
+"""
