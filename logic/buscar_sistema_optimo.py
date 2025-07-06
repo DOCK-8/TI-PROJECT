@@ -1,5 +1,8 @@
 '''
-esa es si puedes crear una funcion en python que busque entre todos los paneles y segun una potencia y area que te envie me devuelva el id del panel de la base de datos y cantidad, lo mismo para bateria solo que en este caso te enviare la capacidad de bateria requerida, y que sea la optima o minima el costo de todos estos
+esa es si puedes crear una funcion en python que busque entre todos los paneles y segun una potencia 
+y area que te envie me devuelva el id del panel de la base de datos y cantidad, lo mismo para bateria 
+solo que en este caso te enviare la capacidad de bateria requerida, y que sea la optima o minima el 
+costo de todos estos
 
 ahora yo le pasare la energia que se necesita
 
@@ -59,6 +62,34 @@ def buscar_panel_optimo(consumo_hogar, area_disponible):
 
     return 0 #panel_optimo, cantidad_paneles
 buscar_panel_optimo(consumo_hogar, area_disponible)
+
+
+def buscar_bateria_optima(capacidad_requerida):
+    """
+    Busca la bateria mas optima de una lista (mock de base de datos), cumpliendo con la capacidad 
+    requerida al menor costo posible.
+
+    Parametro:
+        capacidad_requerida (int): Capacidad total necesaria en Wh (por ejemplo, 10000 para 10 kWh).
+
+    Retorna:
+        tuple: (id_bateria, cantidad_baterias, costo_total)
+    """
+    mejor_opcion = None
+    menor_costo = float('inf')
+
+    for bateria in BDbateria:
+        id_bat, capacidad, voltaje, costo = bateria
+
+        cantidad = int((capacidad_requerida / capacidad) + 0.9999)  # Redondeo hacia arriba
+        costo_total = cantidad * costo
+
+        if costo_total < menor_costo:
+            menor_costo = costo_total
+            mejor_opcion = (id_bat, cantidad, costo_total)
+
+    return mejor_opcion
+
 
 """
 def buscar_bateria_optima(capacidad_bateria_requerida):
