@@ -1,5 +1,6 @@
 from logic.ModelAgent import ModelAgent
 from logic.TrainerModel import TrainerModel
+from logic.buscar_sistema_optimo import buscar_panel_optimo, buscar_inversor_optimo, buscar_bateria_optima
 
 def generateModel(Consumo_U, Area_U):
     irradiacion = #traer de model
@@ -13,6 +14,10 @@ def generateModel(Consumo_U, Area_U):
     return modelo
 
 def generateSO(potencia, capacidad, Area_U):
+    panel = buscar_panel_optimo(potencia, Area_U)
+    inversor = buscar_inversor_optimo(potencia)
+    bateria = buscar_bateria_optima(capacidad)
+    return [panel, inversor, bateria]
 
 
 def generateOPC(Agente, LLC_U):

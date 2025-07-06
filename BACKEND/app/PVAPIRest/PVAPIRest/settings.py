@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'PVAPIRest.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'biblioteca',
+        'NAME': 'systemPV',
         'USER': 'root',
         'PASSWORD': 'sayaChupapiTeam',
         'HOST': 'database',

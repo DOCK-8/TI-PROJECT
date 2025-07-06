@@ -1,22 +1,38 @@
-from .models import User, Book
+from .models import Baterias, Inversores, Paneles, Irradiacion
 from rest_framework import permissions, viewsets
 
-from .serializers import UserSerializer, BookSerializer
+from .serializers import BateriasSerializer, InversoresSerializer, PanelesSerializer, IrradiacionSerializer
 
 
-class UserViewSet(viewsets.ModelViewSet):
+class BateriasViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
-    queryset = User.objects.all().order_by('id')
-    serializer_class = UserSerializer
+    queryset = Baterias.objects.all().order_by('id')
+    serializer_class = BateriasSerializer
     permission_classes = [permissions.IsAuthenticated]
 
 
-class BookViewSet(viewsets.ModelViewSet):
+class InversoresViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
     """
-    queryset = Book.objects.all().order_by('id')
-    serializer_class = BookSerializer
+    queryset = Inversores.objects.all().order_by('id')
+    serializer_class = InversoresSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class PanelesViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Paneles.objects.all().order_by('id')
+    serializer_class = PanelesSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class IrradiacionViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Irradiacion.objects.all().order_by('id')
+    serializer_class = IrradiacionSerializer
     permission_classes = [permissions.IsAuthenticated]

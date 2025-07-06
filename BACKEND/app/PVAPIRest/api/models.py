@@ -1,28 +1,72 @@
 from django.db import models
 
-# Create your models here.
-class User(models.Model):
-    id = models.IntegerField(primary_key = True)
-    nombre = models.CharField(max_length = 100)
-    correo = models.CharField( max_length = 100)
+class Irradiacion(models.Model):
+    id = models.AutoField(primary_key=True)
+    year = models.IntegerField()
+    month = models.CharField(max_length=10)
+    value = models.DecimalField(max_digits=5, decimal_places=2)
 
     class Meta:
-        db_table = "usuarios"
-        managed = False
-        
-    def __str__(self):
-        return f"{self.id} : {self.nombre} : {self.correo}"
-
-class Book(models.Model):
-    id = models.IntegerField(primary_key = True)
-    titulo = models.CharField(max_length = 150)
-    autor = models.CharField(max_length = 100)
-    disponible = models.BooleanField(default = True)
-    usuario_id = models.ForeignKey(User, on_delete = models.DO_NOTHING, db_column = "usuario_id")
-
-    class Meta:
-        db_table = "libros"
+        db_table = "irradiacion"
         managed = False
 
     def __str__(self):
-        return f"{self.id} = {self.disponible} : {self.titulo} : {self.autor}->{self.usuario_id}"
+        return f"{self.id} : {self.year} : {self.month} : {self.value}"
+
+
+class Paneles(models.Model):
+    id = models.AutoField(primary_key=True)
+    modelo = models.CharField(max_length=255)
+    precio = models.DecimalField(max_digits=10, decimal_places=2)
+    potencia = models.IntegerField()
+    consumo_mensual = models.DecimalField(max_digits=10, decimal_places=2)
+    tiempo_vida = models.IntegerField()
+    eficiencia = models.DecimalField(max_digits=5, decimal_places=2)
+    ancho = models.IntegerField()
+    alto = models.IntegerField()
+
+    class Meta:
+        db_table = "paneles"
+        managed = False
+
+    def __str__(self):
+        return f"{self.id} : {self.modelo} : {self.precio} : {self.potencia} : {self.eficiencia}"
+
+
+class Inversores(models.Model):
+    id = models.AutoField(primary_key=True)
+    modelo = models.CharField(max_length=255)
+    precio = models.DecimalField(max_digits=10, decimal_places=2)
+    potencia = models.IntegerField()
+    tension_admisible = models.IntegerField()
+    consumo_mensual = models.DecimalField(max_digits=10, decimal_places=2)
+    tiempo_vida = models.IntegerField()
+    eficiencia = models.DecimalField(max_digits=5, decimal_places=2)
+
+    class Meta:
+        db_table = "inversores"
+        managed = False
+
+    def __str__(self):
+        return f"{self.id} : {self.modelo} : {self.precio} : {self.potencia} : {self.eficiencia}"
+
+
+class Baterias(models.Model):
+    id = models.AutoField(primary_key=True)
+    modelo = models.CharField(max_length=255)
+    precio = models.DecimalField(max_digits=10, decimal_places=2)
+    largo = models.IntegerField()
+    ancho = models.IntegerField()
+    alto = models.IntegerField()
+    voltaje = models.IntegerField()
+    eficiencia = models.DecimalField(max_digits=5, decimal_places=2)
+    capacidad = models.IntegerField()
+    tipo = models.CharField(max_length=20)
+    consumo_mensual = models.DecimalField(max_digits=10, decimal_places=2)
+
+    class Meta:
+        db_table = "baterias"
+        managed = False
+
+    def __str__(self):
+        return f"{self.id} : {self.modelo} : {self.precio} : {self.capacidad} : {self.eficiencia}"

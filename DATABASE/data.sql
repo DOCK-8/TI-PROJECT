@@ -2,11 +2,11 @@
 CREATE DATABASE IF NOT EXISTS systemPV;
 USE systemPV;
 
--- Tabla de irradiacion
+-- Tabla de irradiación
 CREATE TABLE irradiacion (
     id INT AUTO_INCREMENT PRIMARY KEY,
     year INT NOT NULL,
-    month VARCHAR(10) NOT NULL,
+    month VARCHAR(15) NOT NULL,
     value DECIMAL(5,2) NOT NULL
 );
 
@@ -32,8 +32,7 @@ CREATE TABLE inversores (
     tension_admisible INT,
     consumo_mensual DECIMAL(10,2),
     tiempo_vida INT,
-    eficiencia DECIMAL(5,2),
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE SET NULL
+    eficiencia DECIMAL(5,2)
 );
 
 -- Tabla de baterías
@@ -51,7 +50,7 @@ CREATE TABLE baterias (
     consumo_mensual DECIMAL(10,2)
 );
 
---LENADO DE LA BASE DE DATOS
+-- LENADO DE LA BASE DE DATOS
 -- Insertar baterías
 INSERT INTO baterias (modelo, precio, largo, ancho, alto, voltaje, eficiencia, capacidad, tipo, consumo_mensual) VALUES
 ('Bateria AGM 12v 65Ah CSBattery', 396.00, 350, 167, 178, 12, 92, 65, 'AGM', 792),
@@ -74,23 +73,23 @@ INSERT INTO baterias (modelo, precio, largo, ancho, alto, voltaje, eficiencia, c
 ('BATERIA MARCA CSBATTERY LITIO 12V 100AH', 2595.51, 522, 240, 224, 12, 95, 100, 'LITIO', 1500.00);
 
 -- Insertar inversores
-INSERT INTO inversores (modelo, precio, potencia, tension_admisible, consumo_mensual, tiempo_vida, eficiencia, usuario_id) VALUES
-('Inversor Victron Phoenix 24V 375VA VE.Direct', 260.11, 700, 24, 458.06, 25, 90, 1),
-('Inversor Victron Phoenix 24V 500VA VE.Direct', 698.05, 900, 24, 570.66, 25, 91, 1),
-('Inversor Victron Phoenix 24V 250VA VE.Direct', 389.77, 400, 24, 486.76, 25, 88, 1),
-('Inversor Victron Phoenix 24V 800VA VE.Direct', 1022.79, 1500, 24, 1038.78, 25, 91, 2),
-('Inversor Victron Phoenix 24V 1200VA VE.Direct', 1375.63, 2200, 24, 1397.18, 25, 92, 2),
-('Inversor Victron Phoenix 48V 1200VA 120V VE.Direct 5-15R', 1373.91, 2200, 48, 1363.17, 25, 91, 3),
-('Inversor Victron Phoenix 48V 375VA VE.Direct', 475.39, 700, 48, 521.04, 25, 90, 3),
-('Inversor Victron Phoenix 48V 800VA VE.Direct', 1159.86, 1500, 48, 1114.62, 25, 91, 2),
-('Inversor Victron Phoenix 48V 1200VA VE.Direct', 1373.91, 2200, 48, 1600.12, 25, 92, 1),
-('Inversor Victron Phoenix 48V 250VA VE.Direct', 365.42, 400, 48, 644.46, 25, 88, 2),
-('Inversor Victron Phoenix 12V 375VA 120V VE.Direct 5-15R', 1912.54, 650, 12, 471.54, 25, 89, 3),
-('Inversor Victron Phoenix 12V 500VA 120V VE.Direct 5-15R', 2394.69, 1000, 12, 592.99, 25, 90, 1),
-('Inversor Victron Phoenix 12V 375VA VE.Direct', 475.39, 700, 12, 455.33, 25, 89, 2),
-('Inversor Victron Phoenix 12V 250VA VE.Direct', 365.42, 400, 12, 494.74, 25, 87, 3),
-('Inversor cargador 300W 12V 10A Must Solar', 450.45, 300, 12, 506.40, 25, 80, 1),
-('Inversor Victron Phoenix 12V 800VA VE.Direct', 1159.86, 1500, 12, 973.85, 25, 90, 2);
+INSERT INTO inversores (modelo, precio, potencia, tension_admisible, consumo_mensual, tiempo_vida, eficiencia) VALUES
+('Inversor Victron Phoenix 24V 375VA VE.Direct', 260.11, 700, 24, 458.06, 25, 90),
+('Inversor Victron Phoenix 24V 500VA VE.Direct', 698.05, 900, 24, 570.66, 25, 91),
+('Inversor Victron Phoenix 24V 250VA VE.Direct', 389.77, 400, 24, 486.76, 25, 88),
+('Inversor Victron Phoenix 24V 800VA VE.Direct', 1022.79, 1500, 24, 1038.78, 25, 91),
+('Inversor Victron Phoenix 24V 1200VA VE.Direct', 1375.63, 2200, 24, 1397.18, 25, 92),
+('Inversor Victron Phoenix 48V 1200VA 120V VE.Direct 5-15R', 1373.91, 2200, 48, 1363.17, 25, 91),
+('Inversor Victron Phoenix 48V 375VA VE.Direct', 475.39, 700, 48, 521.04, 25, 90),
+('Inversor Victron Phoenix 48V 800VA VE.Direct', 1159.86, 1500, 48, 1114.62, 25, 91),
+('Inversor Victron Phoenix 48V 1200VA VE.Direct', 1373.91, 2200, 48, 1600.12, 25, 92),
+('Inversor Victron Phoenix 48V 250VA VE.Direct', 365.42, 400, 48, 644.46, 25, 88),
+('Inversor Victron Phoenix 12V 375VA 120V VE.Direct 5-15R', 1912.54, 650, 12, 471.54, 25, 89),
+('Inversor Victron Phoenix 12V 500VA 120V VE.Direct 5-15R', 2394.69, 1000, 12, 592.99, 25, 90),
+('Inversor Victron Phoenix 12V 375VA VE.Direct', 475.39, 700, 12, 455.33, 25, 89),
+('Inversor Victron Phoenix 12V 250VA VE.Direct', 365.42, 400, 12, 494.74, 25, 87),
+('Inversor cargador 300W 12V 10A Must Solar', 450.45, 300, 12, 506.40, 25, 80),
+('Inversor Victron Phoenix 12V 800VA VE.Direct', 1159.86, 1500, 12, 973.85, 25, 90);
 
 -- Insertar paneles solares
 INSERT INTO paneles (modelo, precio, potencia, consumo_mensual, tiempo_vida, eficiencia, ancho, alto) VALUES
