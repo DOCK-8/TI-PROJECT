@@ -1,3 +1,4 @@
+import numpy as np
 # ra Radiacion Anual
 # va Varianza
 def simulacion_irradiacion(va, ra, vmax, vmin):

@@ -2,7 +2,9 @@ import numpy as np
 from scipy.optimize import curve_fit
 from scipy.stats import linregress
 from irradiacion import simulacion_irradiacion
-from ajustes import optimoPotenciaPaneles
+
+def ca_fit(llp, c1, c2, c3, c4):
+    return c1 * np.exp(c2 * llp) + c3 * np.exp(c4 * llp)
 
 class TrainerModel:
     def __init__(self, areaU, consumoU, data, paneles, bateria, inversor, cableado):
@@ -63,7 +65,7 @@ class TrainerModel:
 
     def generateII(self):
         p0 = self.generar_p0_automatica()
-        popt, _ = curve_fit(optimoPotenciaPaneles, self.LLP_G, self.CA_G, p0=p0)
+        popt, _ = curve_fit(ca_fit, self.LLP_G, self.CA_G, p0=p0)
         self.c1, self.c2, self.c3, self.c4 = popt
         return popt
 
