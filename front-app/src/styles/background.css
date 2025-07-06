@@ -1,0 +1,74 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background-color: #0B1A2E;
+}
+
+.bgk-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.bubbles {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.bubbles span {
+  position: absolute;
+  bottom: -190px;
+  left: var(--x, 50%);
+  width: var(--size, 30px);
+  height: var(--size, 30px);
+  border-radius: 50%;
+  background-color: #4fc3dc;
+  box-shadow: 0 0 0 10px #4fc3dc44,
+              0 0 50px #4fc3dc,
+              0 0 100px #4fc3dc;
+  animation: animate 15s linear infinite;
+  animation-duration: calc(125s / var(--i));
+  animation-delay: var(--delay, 0s);
+  opacity: 0;
+}
+
+.bubbles span:nth-child(3n) {
+  background-color: #00BFFF;
+  box-shadow: 0 0 0 10px #00BFFF44,
+              0 0 50px #00BFFF,
+              0 0 100px #00BFFF;
+}
+
+.bubbles span:nth-child(3n+1) {
+  background-color: #E040FB;
+  box-shadow: 0 0 0 10px #E040FB44,
+              0 0 50px #E040FB,
+              0 0 100px #E040FB;
+}
+
+.bubbles span:nth-child(3n+2) {
+  background-color: #00E676;
+  box-shadow: 0 0 0 10px #00E67644,
+              0 0 50px #00E676,
+              0 0 100px #00E676;
+}
+
+@keyframes animate {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(-140vh) scale(1); 
+    opacity: 0.6;
+  }
+}
