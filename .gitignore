@@ -1,2 +1,52 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+local_settings.py
+db.sqlite3
+media/
+staticfiles/
+
+# Virtual environment
+.env
 venv/
 env/
+
+# PyCharm IDE
+.idea/
+
+# VS Code settings
+.vscode/
+
+# Distribution / packaging
+*.egg-info/
+dist/
+build/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Coverage reports
+.coverage
+htmlcov/
+
+# Test and tox
+.tox/
+.coverage
+
+# Python eggs
+.eggs/
+
+# mypy
+.mypy_cache/
+
+# Pytest cache
+.pytest_cache/
