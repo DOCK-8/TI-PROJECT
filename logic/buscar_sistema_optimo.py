@@ -17,10 +17,10 @@ from calcular_energia_panel import calcularEnergiaPanelesPorDia
 import math
 
 BDpanel = [
-    [1, 350, 1.6, 0.16, 0.8, 500],  # [id, potencia (Wp), area (m²), eficiencia, factor de perdidas, costo (USD)]
-    [2, 250, 1.5, 0.18, 0.4, 300],
-    [3, 100, 21.0, 0.20, 0.8, 600],
-    [4, 150, 1.8, 0.19, 0.3, 900]
+    [1, 350, 1.6, 0.15, 0.8, 2500],  # [id, potencia (Wp), area (m²), eficiencia, factor de perdidas, costo (USD)]
+    [2, 250, 1.5, 0.18, 0.4, 3000],
+    [3, 100, 2.5, 0.20, 0.8, 2800],
+    [4, 150, 1.8, 0.19, 0.3, 2200]
 ]
 BDbateria = [
     [1, 5000, 12, 100],  # [id, capacidad (Wh), voltaje (V), costo (USD)]
@@ -29,15 +29,18 @@ BDbateria = [
     [4, 15000, 48, 200]
 ]
 BDinversor = [
-    [1, 3000, 12],  # [id, potencia (W), voltaje (V)
-    [2, 5000, 24],
+    [1, 3000, 12, 600],  # [id, potencia (W), voltaje (V), Costo (USD)]
+    [2, 5000, 24, 550],
+    [3, 10000, 48, 800],
+    [4, 5000, 48, 600]
 ]
 
 
 ### Data input
-consumo_hogar = 20  # kWh/día
-area_disponible = 10  # m²
+consumo_hogar = 10  # kWh/día
+area_disponible = 20  # m²
 capacidad_bateria_requerida = 10000  # Wh (10 kWh)
+capacidad_inversor_requerida = 50000  # W (5 kW)
 
 ## se requiere cantidad de paneles y bateria
 cantidad_paneles = 0
@@ -46,24 +49,16 @@ cantidad_baterias = 0
 """Se usara la funcion de calcularEnergiaPanelesPorDia para calcular la energia generada por los paneles"""
 
 
-def buscar_panel_optimo(consumo_hogar, area_disponible): ## solo considera el area y consumo para buscar el panel optimo
-    mejor_opcion = BDpanel[0]  # Iniciar con el primer panel como mejor opcion
+def buscar_panel_optimo(consumo_hogar, area_disponible):
+    mejor_opcion = None
     cantidad_paneles = 0  # Inicializar cantidad de paneles
     energia_requerida = consumo_hogar  # kWh/día
     
-    energia_generada_pv = calcularEnergiaPanelesPorDia(mejor_opcion[2], 4.9, mejor_opcion[3], mejor_opcion[4])
-    cantidad_paneles_pv = energia_requerida / energia_generada_pv  # Cantidad de paneles necesarios para cumplir con la energia requerida
-    energia_generada_pv_total = energia_generada_pv * cantidad_paneles_pv  # Energia total generada por los paneles necesarios
-    
-    cantidad_paneles = int(cantidad_paneles_pv)  # Convertir a entero para la cantidad de paneles
-    
-    cumple_area = False
-    cumple_consumo = False
-    
-    
+    mejor_energia_generada = 0  # Inicializar mejor energía generada
+    mejor_costo = float('inf')  # Inicializar mejor costo a infinito
     
     for panel in BDpanel:
-        id_panel, potencia, area, eficiencia, factor_perdidas = panel
+        id_panel, potencia, area, eficiencia, factor_perdidas, costo = panel
         print(panel)
         
         # Calcular la energía generada por el panel en un día
@@ -73,21 +68,55 @@ def buscar_panel_optimo(consumo_hogar, area_disponible): ## solo considera el ar
         
         paneles_necesarios = math.ceil(energia_requerida / energia_generada) # redondeo hacia arriba
         energia_generada_total = float(energia_generada * paneles_necesarios)
+        costos_totales = costo * paneles_necesarios
         
         print(f"paneles necesarios para cumplir con el consumo: {paneles_necesarios}  Energía generada total: {energia_generada_total} kWh/día")
+        
+        # Verificar Area disponible
         if paneles_necesarios * area <= area_disponible:
             print(f"Panel {id_panel} cumple con el área disponible: {paneles_necesarios * area} m² <= {area_disponible} m²")
-            if (energia_generada_total >= energia_requerida and energia_generada_total >= energia_generada_pv_total) or panel == mejor_opcion:
+            
+            # Verificar si la energía generada es suficiente
+            if (energia_generada_total >= energia_requerida and energia_generada_total >= mejor_energia_generada and costos_totales < mejor_costo):
                 print(f"Panel {id_panel} cumple con el consumo requerido: {energia_generada_total} kWh/día >= {energia_requerida} kWh/día")
+                print(f"Costo total: {costos_totales} USD")
                 mejor_opcion = panel
-                energia_generada_pv = energia_generada_total
-                
+                mejor_energia_generada = energia_generada_total
+                mejor_costo = costos_totales
                 cantidad_paneles = int(paneles_necesarios)
-                cumple_area = True
-                cumple_consumo = energia_generada_total >= energia_requerida
 
-    return mejor_opcion, cantidad_paneles, cumple_area, cumple_consumo
+    return mejor_opcion, cantidad_paneles, mejor_costo if mejor_opcion else None
 print("Mejor Opcion: ", buscar_panel_optimo(consumo_hogar, area_disponible))
+
+### buscar inversor optimo
+def buscar_inversor_optimo(potencia_requerida): # potencia_requerida y costo minimo
+    inversor_optimo = None
+    cantidad_inversores = 0
+
+    costo_minimo = 99999999999
+    potencia_total_op = 0   
+    for inversor in BDinversor:
+        id_inversor, potencia, voltaje, costo = inversor
+
+        cantidad_inv = math.ceil(potencia_requerida / potencia)  # Cantidad de inversores necesarios para cumplir con la potencia requerida
+        potencia_total = potencia * cantidad_inv  # Potencia total que puede entregar el inversor
+        costo_total = costo * cantidad_inv  # Costo total de los inversores necesarios
+        
+        if potencia_total >= potencia_requerida:
+            if not inversor_optimo or potencia_total <= potencia_total_op:  # Elegir el inversor con menor potencia que cumpla el requisito
+                if costo_minimo > costo_total:  # Comparar costo del inversor
+                    print(f"Inversor {id_inversor} cumple con la potencia requerida: {potencia_total} W >= {potencia_requerida} W")
+                    print(f"Cantidad de inversores necesarios: {cantidad_inv}")
+                    print(f"Costo total: {costo_total} USD")
+                    inversor_optimo = inversor
+                    costo_minimo = costo_total  # Actualizar costo mínimo
+                    potencia_total_op = potencia_total
+                    cantidad_inversores = cantidad_inv  # Actualizar cantidad de inversores necesarios
+
+    return inversor_optimo, cantidad_inversores, costo_minimo if inversor_optimo else None
+
+print("Buscando inversor óptimo...")
+print(buscar_inversor_optimo(capacidad_inversor_requerida))
 
 """
 def buscar_bateria_optima(capacidad_bateria_requerida):
