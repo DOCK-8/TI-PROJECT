@@ -1,0 +1,25 @@
+version: '3.5'
+services:
+  backend:
+    build: ./BACKEND
+    volumes:
+      - ./BACKEND/app/.:/usr/src/app
+    ports:
+      - 8000:8000
+    working_dir: /usr/src/app/PVAPIRest
+    depends_on:
+      - database
+    tty: true
+    stdin_open: true
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+
+  database:
+     image: mysql
+     environment:
+       - MYSQL_ROOT_PASSWORD=sayaChupapiTeam
+     volumes:
+       - ./DATABASE/data.sql:/docker-entrypoint-initdb.d/data.sql
+       - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
