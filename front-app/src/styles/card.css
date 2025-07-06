@@ -10,12 +10,13 @@
   border-radius: 15px;
   margin-bottom: 10px;
 }
+
 .electro-container h2 {
   width: 100%;
   border-radius: 15px 15px 0 0;
   background-color: #00E676;
   color: white;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 500;
   padding: 0.5%;
 }
@@ -55,8 +56,8 @@
   position: sticky;
   bottom: 0;
   align-self: flex-end;
-  background-color: rgba(255, 255, 255, 0.788);
-  backdrop-filter: blur(8px);
+  background-color: rgba(255, 255, 255, 0.279);
+  backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(8px);
   padding: 0.5rem 1rem;
   border-radius: 8px;

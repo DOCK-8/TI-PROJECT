@@ -199,7 +199,7 @@ const TechoCanvas = ({ onAreaDisponible }) => {
               Área total: {techoArea} m²
             </div>
             <button
-              className="btn-rojo"
+              className="btn-rojo total"
               onClick={() => {
                 setAnchoMetros('');
                 setAltoMetros('');
@@ -208,7 +208,7 @@ const TechoCanvas = ({ onAreaDisponible }) => {
                 setActual(null);
                 setInicio(null);
                 setDibujando(false);
-                setPasoActual(1); // <-- Vuelve al Paso 1
+                setPasoActual(1); 
                 const ctx = canvasRef.current?.getContext('2d');
                 if (ctx && canvasRef.current) {
                   ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
