@@ -1,21 +1,23 @@
-# 🐧 Proyecto Docker + Makefile - Hola Mascota
+# 🐧 Hola Mascota - Proyecto Makefile + Docker
 
-Bienvenido a **Hola Mascota**, una simpática (y poderosa) interfaz de comandos para gestionar tu proyecto con Docker. Este repositorio contiene un `Makefile` que te permite instalar, iniciar, detener y desinstalar tus servicios fácilmente con un solo comando... y con estilo.
+¡Hola mascota! Bienvenido al proyecto más divertido que hayas ejecutado con `make`.
+
+Este repositorio contiene un `Makefile` que te permite controlar tu entorno de desarrollo con comandos simples y llenos de personalidad: colores, frases célebres y, por supuesto, los Backyardigans.
 
 ---
 
-## 🛠️ Requisitos
+## 📋 Requisitos
 
-- [Docker](https://docs.docker.com/get-docker/)
-- [Docker Compose](https://docs.docker.com/compose/)
+- Docker 🐳
+- Docker Compose
 - GNU Make
-- Terminal que soporte colores ANSI (por ejemplo, Bash en Linux)
+- Terminal con soporte para colores ANSI (como Bash o Zsh)
 
 ---
 
-## 🚀 Comandos disponibles
+## 📜 Comandos disponibles
 
-Ejecuta `make help` para ver la lista de comandos disponibles con descripciones coloridas:
+Para ver todos los comandos con estilo y frases icónicas, ejecuta:
 
 ```bash
 make help
