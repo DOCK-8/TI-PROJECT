@@ -53,51 +53,20 @@ def get_token_api(request):
     return Response({'token':token})
 
 @api_view(['POST'])
-def generate_model(request):
+def solucionOptima(request):
     consumo = request.data.get('consumo_total','')
     area = request.data.get('area_disponible','')
     modelT = TrainerModel(float(area), float(consumo), 0.1898, 0.9405, 0.8931, 0.98)
     modelT.entrenar_modelo_completo()
-    salida = [
-        {
-            "modelo": {
-                "c1": modelT.c1,
-                "c2": modelT.c2,
-                "c3": modelT.c3,
-                "c4": modelT.c4,
-                "c5": modelT.c5,
-                "c6": modelT.c6,
-                "area": float(area),
-                "consumo": float(consumo)
-            }
-        }
-    ]
-    logic_dir = os.path.join(settings.BASE_DIR, 'logic')
-    os.makedirs(logic_dir, exist_ok=True)
-    path_json = os.path.join(logic_dir, 'modelo.json')
-
-    with open(path_json, 'w', encoding='utf-8') as f:
-        json.dump(salida, f, indent=2, ensure_ascii=False)
-
-    return Response({"message":f"modelo creado"})
-
-@api_view(['POST'])
-def solucionOptima(request):
-    logic_dir = os.path.join(settings.BASE_DIR, 'logic')
-    os.makedirs(logic_dir, exist_ok=True)
-    with open(logic_dir+'/modelo.json', 'r', encoding='utf-8') as f:
-        datos = json.load(f)
-    coeficiente = datos[0]['modelo']
-    LLP_U = request.data.get('estado','')
+    LLP_U = 0.01
     modelo = ModelAgent()
-    c1 = coeficiente['c1']
-    c2 = coeficiente['c2']
-    c3 = coeficiente['c3']
-    c4 = coeficiente['c4']
-    c5 = coeficiente['c5']
-    c6 = coeficiente['c6']
-    area = coeficiente['area']
-    oPP, oCB = modelo.generateOptimoConfig(c1,c2,c3,c4,c5,c6,float(LLP_U))
+    c1 = modelT.c1
+    c2 = modelT.c2
+    c3 = modelT.c3
+    c4 = modelT.c4
+    c5 = modelT.c5
+    c6 = modelT.c6
+    oPP, oCB = modelo.generateOptimoConfig(c1,c2,c3,c4,c5,c6,LLP_U))
     configuracion = buscar_configuracion_optima(oPP,area,oCB)
     
     return Response({"message":configuracion})

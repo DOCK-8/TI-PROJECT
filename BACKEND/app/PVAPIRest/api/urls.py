@@ -10,8 +10,6 @@ router.register(r'Irradiacion',views.IrradiacionViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('hello', views.hello_world),
     path('token', views.get_token_api),
-    path('consumo-area', views.generate_model),
     path('solucion-optima', views.solucionOptima),
 ]
