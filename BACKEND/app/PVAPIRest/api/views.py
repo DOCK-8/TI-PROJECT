@@ -6,6 +6,7 @@ from django.middleware.csrf import get_token
 from logic.TrainerModel import TrainerModel
 from logic.ModelAgent import ModelAgent
 from logic.buscar_sistema_optimo import buscar_configuracion_optima
+from logic.calcular_roi import calcularResumenROIyPayback
 from django.conf import settings
 import json
 import os
@@ -66,7 +67,11 @@ def solucionOptima(request):
     c4 = modelT.c4
     c5 = modelT.c5
     c6 = modelT.c6
-    oPP, oCB = modelo.generateOptimoConfig(c1,c2,c3,c4,c5,c6,LLP_U))
+    oPP, oCB = modelo.generateOptimoConfig(c1,c2,c3,c4,c5,c6,LLP_U)
     configuracion = buscar_configuracion_optima(oPP,area,oCB)
+    costo_total = configuracion['panel_optimo']['costo_total_usd']*configuracion['panel_optimo']['cantidad']+\
+        configuracion['inversor_optimo']['costo_total']*configuracion['inversor_optimo']['cantidad']+\
+        configuracion['bateria_optima']['costo_total_usd']*configuracion['bateria_optima']['cantidad']
+    answer = calcularResumenROIyPayback(costo_total, oPP, float(consumo), 0.70305)
     
-    return Response({"message":configuracion})
+    return Response({"configuracion":configuracion,"roi":answer})
