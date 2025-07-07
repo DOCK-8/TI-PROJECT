@@ -20,6 +20,10 @@ services:
      volumes:
        - ./DATABASE/data.sql:/docker-entrypoint-initdb.d/data.sql
        - mysql_data:/var/lib/mysql
+  frontend:
+    image: httpd:latest
+    ports:
+      - 8080:80
 
 volumes:
   mysql_data:
