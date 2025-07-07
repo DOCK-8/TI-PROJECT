@@ -101,11 +101,3 @@ def solucionOptima(request):
     configuracion = buscar_configuracion_optima(oPP,area,oCB)
     
     return Response({"message":configuracion})
-
-@api_view(['GET','POST'])
-def hello_world(request):
-    if request.method == 'GET':
-        return Response({"message": "Hello, World!"})
-    elif request.method == 'POST':
-        nombre = request.data.get('nombre','')
-        return Response({"stado": f'listo {nombre}'})
