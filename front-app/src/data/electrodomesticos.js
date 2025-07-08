@@ -1,0 +1,41 @@
+export const electrodomesticos = {
+  Cocina: [
+    { nombre: "Horno Eléctrico", potencia: 4000 },
+    { nombre: "Hervidor de agua", potencia: 2200 },
+    { nombre: "Microondas", potencia: 1000 },
+    { nombre: "Waflera", potencia: 700 },
+    { nombre: "Olla arrocera", potencia: 1100 },
+    { nombre: "Tostadora", potencia: 1000 },
+    { nombre: "Cafetera", potencia: 700 },
+    { nombre: "Licuadora", potencia: 700 },
+    { nombre: "Refrigeradora", potencia: 220 },
+    { nombre: "Batidora", potencia: 180 },
+    { nombre: "Campana extractora", potencia: 200 },
+  ],
+  Sala: [
+    { nombre: "Aire acondicionado", potencia: 1115 },
+    { nombre: "Foco LED", potencia: 40 },
+    { nombre: "Televisor", potencia: 150 },
+    { nombre: "Equipo de sonido", potencia: 50 },
+    { nombre: "Laptop", potencia: 70 },
+    { nombre: "DVD", potencia: 30 },
+  ],
+  Dormitorio: [
+    { nombre: "Computadora", potencia: 200 },
+    { nombre: "Ventilador", potencia: 127 },
+    { nombre: "Play Station", potencia: 200 },
+    { nombre: "Cargador de celular", potencia: 25 },
+  ],
+  Baño: [
+    { nombre: "Ducha eléctrica", potencia: 4500 },
+    { nombre: "Terma eléctrica", potencia: 1500 },
+    { nombre: "Secadora de cabello", potencia: 2000 },
+  ],
+  Lavanderia: [
+    { nombre: "Secadora de ropa", potencia: 4200 },
+    { nombre: "Plancha", potencia: 2200 },
+    { nombre: "Aspiradora", potencia: 1100 },
+    { nombre: "Lustradora", potencia: 400 },
+    { nombre: "Lavadora", potencia: 300 },
+  ],
+};
