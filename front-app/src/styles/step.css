@@ -1,0 +1,154 @@
+.card {
+  width: 60%;
+  height: 80%;
+  margin: auto;
+  padding: 0;
+  border-radius: 1rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  box-shadow: 0 0 30px rgba(0, 200, 83, 0.15);
+}
+
+.card-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 16%;
+  gap: 2rem;
+  padding: 1rem 0;
+  background: linear-gradient(to bottom, #E8F5E9, #dbffee);
+  border-right: 4px solid #00E676;
+}
+
+.card-title p {
+  font-size: 0.8rem;
+  margin: 0;
+  color: #2E7D32;
+}
+
+.paso-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  color: #A5D6A7;
+  transition: color 0.3s ease;
+}
+
+.paso-card.active {
+  color: #00C853;
+  font-weight: bold;
+}
+
+.circle {
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  border: 3px solid #A5D6A7;
+  margin-bottom: 0.2rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.paso-card.active .circle {
+  border-color: #00E676;
+  background-color: #00E676;
+  color: white;
+  box-shadow: 0 0 15px 5px #00e67752;
+}
+
+.paso-card.active p {
+  font-size: 0.8rem;
+  margin: 0;
+  color: #00E676;
+  font-weight: 600;
+}
+
+.line {
+  width: 4px;
+  height: 40px;
+  background-color: #A5D6A7;
+  border-radius: 2px;
+  transition: background-color 0.3s ease;
+}
+
+.paso-card.active + .line {
+  background-color: #00E676;
+}
+
+.card-question {
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #e8f5e9f0;
+  /*background: linear-gradient(120deg, rgba(229, 238, 252, 0.916), #6f8199);*/
+  backdrop-filter: blur(80px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #1C1C1C;
+  overflow-y: auto;
+}
+
+.card-question p {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  color: #0B1A2E;
+  text-shadow: 1px 0 16px #0b1a2e3b;
+  margin-bottom: 1rem;
+}
+
+.buttons-card {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1.4rem;
+}
+
+.buttons-card .back,
+.buttons-card .next {
+  padding: 0.55rem 2rem;
+  border: none;
+  border-radius: 0.8rem;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, font-weight 0.1s ease;
+}
+
+.buttons-card .back {
+  background-color: #EF5350;
+  color: white;
+}
+
+.buttons-card .back:hover {
+  background-color: #C62828;
+  box-shadow: 0 0 15px rgba(229, 57, 53, 0.4);
+  transform: scale(1.10);
+  font-weight: 550;
+}
+
+.buttons-card .next {
+  background-color: #00dd72;
+  color: white;
+}
+
+.buttons-card .next:hover {
+  background-color: rgb(2, 162, 69);
+  box-shadow: 0 0 15px rgba(0, 200, 83, 0.3);
+  transform: scale(1.10);
+  font-weight: 550;
+}
