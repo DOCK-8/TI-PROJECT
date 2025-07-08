@@ -27,7 +27,7 @@ export default function Paso2() {
       });
     });
 
-    return total;
+    return total/1000;
   };
 
   const handleNext = () => {
@@ -47,7 +47,8 @@ export default function Paso2() {
     }
 
     console.log('Consumo total estimado (W):', consumoTotal);
-    navigate('/paso3');
+    localStorage.setItem('consumoTotal', consumoTotal); 
+    navigate('/dashboard');
   };
 
   return (

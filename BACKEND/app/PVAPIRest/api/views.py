@@ -87,7 +87,8 @@ def solucionOptima(request):
         return Response({"configuracion": configuracion, "roi": answer})
     
     except Exception as e:
+        print("ERROR:", str(e))
         return Response(
-            {"error": "Error en los datos proporcionados. Revisa los valores ingresados."},
+            {"error": str(e)},
             status=status.HTTP_400_BAD_REQUEST
         )

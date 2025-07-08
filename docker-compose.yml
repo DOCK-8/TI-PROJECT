@@ -27,5 +27,16 @@ services:
         python manage.py runserver 0.0.0.0:8000
       "
 
+  frontend:
+    build:
+      context: ./front-app
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./front-app:/app
+    depends_on:
+      - backend
+
 volumes:
   mysql_data:

@@ -45,8 +45,11 @@ const Paso1 = () => {
       <div className="card-question">
         <p>1. Dibuja tu techo y marca los obstáculos (como termas, etc). Solo se considerará el área libre.</p>
 
-        <TechoCanvas onAreaDisponible={(area) => setAreaDisponible(area)} />
-        
+        <TechoCanvas onAreaDisponible={(area) => {
+          setAreaDisponible(area);
+          localStorage.setItem('areaDisponible', area);
+        }} />
+                
         <div className="buttons-card">
           <button className="back" onClick={() => navigate(-1)}>Atrás</button>
           <button className="next" onClick={handleNext}>Siguiente</button>
