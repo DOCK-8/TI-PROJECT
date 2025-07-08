@@ -1,4 +1,4 @@
-# ☀️ solAR – Calculadora de Viabilidad Solar para Hogares en Arequipa
+# 🌞 solAR – Calculadora de Viabilidad Solar para Hogares en Arequipa
 
 **solAR** es una aplicación web desarrollada para ayudar a los ciudadanos de **Arequipa, Perú**, a calcular el **retorno de inversión (ROI)** y el **dimensionamiento óptimo** de un sistema de paneles solares doméstico. Aprovecha el alto potencial de radiación solar de la región para ofrecer recomendaciones precisas, accesibles y sostenibles.
 
