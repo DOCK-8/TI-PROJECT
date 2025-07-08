@@ -2,7 +2,8 @@ from logic.calcular_energia_panel import calcularEnergiaPanelesPorDia
 from api.models import Paneles, Baterias, Inversores
 import math
 
-def buscar_panel_optimo(consumo_hogar, area_disponible, irradiancia_promedio=4.6):
+#irradiancia promedio Anual en en arequipa 2023: 6.6 kWh/m2/dia 
+def buscar_panel_optimo(consumo_hogar, area_disponible, irradiancia_promedio=6.6):
     paneles = Paneles.objects.all()
     mejor_panel = None
     cantidad_paneles = 0
@@ -20,12 +21,12 @@ def buscar_panel_optimo(consumo_hogar, area_disponible, irradiancia_promedio=4.6
             if eficiencia <= 0 or eficiencia > 1:
                 continue
 
-            perdidas = 0.15
+            perdidas = 0.2 # Considerando un 20% de pérdidas por temperatura, suciedad, etc.
             costo = float(p.precio or 0)
             if costo <= 0:
                 continue
 
-            energia_generada = round(area_panel * irradiancia_promedio * eficiencia * (1 - perdidas), 2)
+            energia_generada = round(area_panel * irradiancia_promedio * eficiencia * (1 - perdidas), 2) # Coeficiente de rendimiento tipico de 80%
             if energia_generada <= 0:
                 continue
 
