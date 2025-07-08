@@ -58,6 +58,9 @@ El proyecto contribuye directamente a:
 
 ```bash
 git clone https://github.com/DOCK-8/TI-PROJECT.git
+```
+
+```bash
 cd TI-PROJECT
 ```
 
