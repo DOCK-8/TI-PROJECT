@@ -16,7 +16,7 @@ y lo que entrega son 3 datos
 
 el area que tenemos disponible para poner los paneles, consumo hogar, capacidad de bateria requerida
 '''
-from calcular_energia_panel import calcularEnergiaPanelesPorDia
+from .calcular_energia_panel import calcularEnergiaPanelesPorDia
 import math
 
 BDpanel = [
