@@ -1,6 +1,6 @@
 # ☀️ solAR – Calculadora de Viabilidad Solar para Hogares en Arequipa
 
-solAR es una aplicación web desarrollada para ayudar a los ciudadanos de **Arequipa, Perú**, a calcular el **retorno de inversión (ROI)** y el **dimensionamiento óptimo** de un sistema de paneles solares doméstico. Aprovecha el alto potencial de radiación solar de la región para ofrecer recomendaciones precisas, accesibles y sostenibles.
+**solAR** es una aplicación web desarrollada para ayudar a los ciudadanos de **Arequipa, Perú**, a calcular el **retorno de inversión (ROI)** y el **dimensionamiento óptimo** de un sistema de paneles solares doméstico. Aprovecha el alto potencial de radiación solar de la región para ofrecer recomendaciones precisas, accesibles y sostenibles.
 
 ---
 
@@ -47,33 +47,51 @@ El proyecto contribuye directamente a:
 
 ---
 
-## 🚀 Despliegue Local
+## 🚀 Despliegue Local en Windows
 
 ### 1. Requisitos
 
-- [Docker](https://www.docker.com/)
-- [Docker Compose](https://docs.docker.com/compose/)
+- [Docker Desktop para Windows](https://www.docker.com/products/docker-desktop/)
+- PowerShell o terminal compatible
+
+
+> ⚠️ **IMPORTANTE:** Antes de continuar, asegúrate de que el puerto `3306` (MySQL) **no esté en uso por otra aplicación como XAMPP o MySQL Workbench**.
+>
+> Ejecuta el siguiente comando en PowerShell para verificar:
+>
+> ```powershell
+> netstat -aon | findstr :3306
+> ```
+>
+> Si ves una línea que incluye `LISTENING`, puedes identificar el proceso ejecutando:
+>
+> ```powershell
+> tasklist | findstr <PID>
+> ```
+>
+> (Reemplaza `<PID>` por el número que aparece en la última columna de `netstat`.)
+
 
 ### 2. Clonar el repositorio
 
-```bash
+```powershell
 git clone https://github.com/DOCK-8/TI-PROJECT.git
 ```
 
-```bash
+```powershell
 cd TI-PROJECT
 ```
 
 ### 3. Levantar el proyecto
-```bash
+```powershell
 docker-compose up --build
 ```
 
 ### 4. Acceder a la app
 
-- **Frontend (React)**: http://localhost:5173/
-- **Backend**: http://localhost:8000/api/v1
-- **Base de Datos**: Puerto 3306 (MySQL)
+- 🌐 **Frontend (React)**: http://localhost:5173
+- ⚙️ **Backend (Django API)**: http://localhost:8000/api/v1
+- 🛢️ **Base de Datos**: Corriendo en localhost:3306
 
 ---
 
