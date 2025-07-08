@@ -33,8 +33,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "5173:5173"
-    volumes:
-      - ./front-app:/app
+    #volumes:
+     # - ./front-app:/app
     depends_on:
       - backend
 
