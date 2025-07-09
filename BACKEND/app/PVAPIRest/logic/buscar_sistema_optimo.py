@@ -8,7 +8,7 @@ def buscar_panel_optimo(consumo_hogar, area_disponible, irradiancia_promedio=6.6
     mejor_panel = None
     cantidad_paneles = 0
     menor_costo = float('inf')
-
+    
     for p in paneles:
         try:
             ancho_m = (p.ancho or 0) / 1000
