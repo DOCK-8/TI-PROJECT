@@ -1,9 +1,9 @@
-from logic.calcular_energia_panel import calcularEnergiaPanelesPorDia
+from .calcular_energia_panel import calcularEnergiaPanelesPorDia
 from api.models import Paneles, Baterias, Inversores
 import math
 
 #irradiancia promedio Anual en en arequipa 2023: 6.6 kWh/m2/dia 
-def buscar_panel_optimo(consumo_hogar, area_disponible, irradiancia_promedio=6.6):
+def buscar_panel_optimo(consumo_hogar, area_disponible, irradiancia_promedio=6.6025):
     paneles = Paneles.objects.all()
     mejor_panel = None
     cantidad_paneles = 0
